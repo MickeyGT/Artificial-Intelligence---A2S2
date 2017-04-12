@@ -72,8 +72,7 @@ cumnat(X,Y):-barbat(X),casatorit(X,Z),frate(Z,Y).
 cumnat(X,Y):-barbat(X),casatorit(X,Z),sora(Z,Y).
 nora(X,Y):-femeie(X),parinte(Y,Z),casatorit(X,Z).
 stranepot(X,Y):-parinte(Y,X).
-stranepot(X,Y):-parinte(T,X),parinte(Y,T).
-stranepot(X,Y):-parinte(Z,X),parinte(T,Z),parinte(Y,T).
+stranepot(X,Y):-parinte(Z,X),stranepot(Z,Y).
 
 
 /** <examples>
