@@ -58,22 +58,38 @@ casatorit(gheorghe, dana).
 casatorit(dana, gheorghe).
 
 sotie(X,Y):-femeie(X),casatorit(X,Y).
-frate(X,Y):-barbat(X), parinte(Z,X),parinte(Z,Y),X\=Y.
-sora(X,Y):-femeie(X), parinte(Z,X),parinte(Z,Y),X\=Y.
-bunica_materna(X,Y):-femeie(X),parinte(X,Z),parinte(Z,Y).
-bunic_matern(X,Y):-barbat(X),parinte(X,Z),parinte(Z,Y).
-unchi(X,Y):-barbat(X),parinte(Z,Y),frate(X,Z).
+frate(X,Y):-barbat(X), parinte(Z,X),parinte(Z,Y),femeie(Z),X\=Y.
+sora(X,Y):-femeie(X), parinte(Z,X),parinte(Z,Y),femeie(Z),X\=Y.
+bunica_materna(X,Y):-femeie(X),femeie(Z),parinte(X,Z),parinte(Z,Y).
+bunic_matern(X,Y):-barbat(X),femeie(Z),parinte(X,Z),parinte(Z,Y).
+unchi(X,Y):-barbat(X),parinte(Z,Y),cumnat(Z,X).
 vara_primara(X,Y):-femeie(X),parinte(Z,X),parinte(F,Y),frate(Z,F).
 vara_primara(X,Y):-femeie(X),parinte(Z,X),parinte(F,Y),sora(Z,F).
-socru(X,Y):-barbat(X),casatorit(Y,Z),femeie(Y),parinte(X,Z).
+socru(X,Y):-barbat(X),casatorit(Y,Z),parinte(X,Z).
 cuscra(X,Y):-femeie(X),parinte(X,Z),casatorit(Z,F),parinte(Y,F).
 cumnat(X,Y):-barbat(X),frate(X,Z),casatorit(Z,Y).
-nora(X,Y):-femeie(X),parinte(X,Z),femeie(Z),casatorit(Z,Y).
-stranepot(X,Y):-bunica_materna(Y,Z),parinte(Z,X).
-stranepot(X,Y):-bunic_matern(Y,Z),parinte(Z,X).
+cumnat(X,Y):-barbat(X),casatorit(X,Z),frate(Z,Y).
+cumnat(X,Y):-barbat(X),casatorit(X,Z),sora(Z,Y).
+nora(X,Y):-femeie(X),parinte(Y,Z),casatorit(X,Z).
+stranepot(X,Y):-parinte(Y,X).
+stranepot(X,Y):-parinte(T,X),parinte(Y,T).
+stranepot(X,Y):-parinte(Z,X),parinte(T,Z),parinte(Y,T).
 
 
+/** <examples>
+?-sotie(X,Y).
+?-frate(X,Y).
+?-sora(X,Y).
+?-bunica_materna(X,Y).
+?-bunic_matern(X,Y).
+?-unchi(X,Y).
+?-vara_primara(X,Y).
+?-socru(X,Y).
+?-cuscra(X,Y).
+?-cumnat(X,Y).
+?-nora(X,Y).
+?-stranepot(X,Y).
 
-    
 
-
+stranepot,bunica,unchi
+*/
