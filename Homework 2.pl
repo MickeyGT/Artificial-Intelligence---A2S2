@@ -13,3 +13,12 @@ sublist(X,Y):-append(X,_,Z),append(_,Z,Y).
 
 3)
 
+5)
+
+invers([],[]). 
+invers([H|T],R):-  naiverev(T,RevT),  append(RevT,[H],R).
+
+6)
+
+
+8)
