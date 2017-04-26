@@ -20,5 +20,17 @@ invers([H|T],R):-  naiverev(T,RevT),  append(RevT,[H],R).
 
 6)
 
+palindrom([_]).
+palindrom(X) :-
+    append([FirstChar|Cont], [FirstChar], X),
+    palindrom(Cont).
+
+
+/** <examples>
+?- palindrom([2,3]).
+?- palindrom([1,2,3]).
+?- palindrom([1,2,1]).
+?- palindrom([1,2,3,2,1]).
+*/
 
 8)
