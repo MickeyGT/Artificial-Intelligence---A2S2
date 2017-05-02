@@ -34,3 +34,22 @@ palindrom(X) :-
 */
 
 8)
+
+stanga(st).
+dreapta(dr).
+rotirest([E|T], R) :-append(T,[E],R).
+rotiredr(L, R) :-rotirest(R, L).
+rotire(Lista,_,0,Lista).
+rotire(Lista,Directie,Nr,ListaRez):-
+    stanga(Directie),
+	rotirest(Lista,L),Nr1 is Nr-1,rotire(L,st,Nr1,ListaRez).
+rotire(Lista,Directie,Nr,ListaRez):-
+    dreapta(Directie),
+	rotiredr(Lista,L),Nr1 is Nr-1,rotire(L,dr,Nr1,ListaRez).
+
+/** <examples>
+?- rotire([a,b,c,d,e],st,1,X).
+?- rotire([a,b,c,d,e],dr,1,X).
+?- rotire([a,b,c,d,e],st,2,X).
+?- rotire([a,b,c,d,e],dr,2,X).
+*/
