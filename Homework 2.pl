@@ -13,6 +13,19 @@ sublist(X,Y):-append(X,_,Z),append(_,Z,Y).
 
 3)
 
+liniarizare([],[]).
+
+liniarizare([First|Rest],Rez):-
+	flatten(First,NewList1),
+	flatten(Rest,NewList2),
+	append(NewList1,NewList2,Rez).
+liniarizare(List,[List]).
+
+/** <examples>
+?- liniarizare([1, 2, [3, 4], [5, [6, 7], [[8], 9]]], L) .
+?- liniarizare([[1, [2], [[[3, 4]]]], [[5, [6, 7], [[8], 9]]]], L) .
+*/
+
 5)
 
 invers([],[]). 
