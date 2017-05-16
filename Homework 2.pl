@@ -28,8 +28,20 @@ liniarizare(List,[List]).
 
 5)
 
-invers([],[]). 
-invers([H|T],R):-  naiverev(T,RevT),  append(RevT,[H],R).
+% Varianta Recursiva
+flip(List, Invers):-
+    move(List, Invers).
+move([First|Rest], Invers):-
+    rotate(Rest, [First], Invers).
+rotate([First|Rest], Temp, Invers):-
+    rotate(Rest, [First|Temp], Invers).
+rotate([], Temp, Temp):-!.
+
+% Varianta Recursiva Begin
+
+flip(List, Invers):- move(List,Invers).
+move([First|Rest],Invers):- move(Rest,RestInvers), append(RestInvers,[First],Invers).
+move([],[]):-!.
 
 6)
 
