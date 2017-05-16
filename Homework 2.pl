@@ -43,6 +43,12 @@ flip(List, Invers):- move(List,Invers).
 move([First|Rest],Invers):- move(Rest,RestInvers), append(RestInvers,[First],Invers).
 move([],[]):-!.
 
+/** <examples>
+?- flip([1,2,3,4,5,6,7,8,9], X).
+?- flip([1,2,3,4], X).
+?- flip([5,4,3,2,1], X).
+*/
+
 6)
 
 palindrom([_]).
