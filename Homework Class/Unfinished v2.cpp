@@ -40,13 +40,13 @@ void RBFS(deque<vector<int>>que)
 	for (auto it = toSplit.begin(); it != toSplit.end(); it++)
 	{
 		for (auto iter = frontConnections[*it].begin(); iter != frontConnections[*it].end(); iter++)
-			if((*iter).size()!=1&&*(*iter).begin()!=0)
+			if((*iter).size()==1&&*(*iter).begin()==0)
 			{
-				que.push_back(*iter);
+				completed[*it] = 1;		
 			}
 			else
 			{
-				completed[*it] = 1;
+				que.push_back(*iter);
 			}
 	}
 	int ok = 1;
@@ -69,9 +69,8 @@ int main()
 {
 	ifstream f("file.in");
 	ofstream g("file.out");
-	int n;
 	f >> nrDef;
-	for (i = 1; i <= n; i++)
+	for (i = 1; i <= nrDef; i++)
 	{
 		f >> nrParameters >> startingNode;
 		if (nrParameters == 0)
