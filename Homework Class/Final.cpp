@@ -63,7 +63,7 @@ void RBFS(deque<vector<int>>que)
 			que.erase(it);
 			break;
 		}
-	que.pop_back();
+	// If there are no nodes that still need to be proven.
 	if (que.size() == 0)
 		programFinished = 1;
 	int ok = 1;
@@ -102,7 +102,6 @@ void RBFS(deque<vector<int>>que)
 int main()
 {
 	ifstream f("file.in");
-	ofstream g("file.out");
 	// Reading the number of pre-defined definitons.
 	f >> nrDef; 
 	// for each one of them
