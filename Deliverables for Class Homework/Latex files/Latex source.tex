@@ -1,0 +1,137 @@
+% simple.tex - A simple article to illustrate document structure.
+
+% preamble
+
+\documentclass{article}
+%% \usepackage{times}
+\usepackage{latexsym}
+\usepackage{url}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true}
+\usepackage{graphicx}
+
+\begin{document}
+
+% top matter
+
+\title{Artificial Intelligence Homework, Spring 2017}
+\author{Turcu Gabriel-Virgil }
+\date{Computer Science English Section, Second Year, Group 10206B}
+\maketitle
+\pagebreak
+
+
+
+% sections
+\section{Problem statement}
+
+Your task is to develop an application to evaluate the performance of an heuristic
+search algorithm.
+We consider Recursive best-first search – RBFS. In what follows we present
+the description:
+“This algorithm uses the f limit variable to keep track of the f-value of the
+best alternative path available from any ancestor of the current node. If the
+current node exceeds this limit, the recursion unwinds back to the alternative
+path. As the recursion unwinds, RBFS replaces the f-value of each node along
+the path with a backed-up value – the best f-value of its children. In this way,
+RBFS remembers the f-value of the best leaf in the forgotten subtree and can
+therefore decide whether it’s worth reexpanding the \mbox{subtree at some later time.}”
+\linebreak
+\linebreak
+P2) Top-down proof with SLD resolution. Here you can vary the number n of
+propositional symbols, as well as the number k of rules.
+
+%%This document is about \LaTeX{}~\cite{lamport94}
+\pagebreak
+
+\linebreak
+
+
+\section{Application Design}
+
+\begin{itemize}
+\item
+The pseudocode used was the pseudocode given in the problem statement for the RBFS function.
+
+\item
+The high level architectural overview of the application.
+\begin{itemize}
+  \item The application uses one recursive best first search function to solve the top-down proof with SLD resolution.
+  
+  \item The main containers used in the function and outside the function are represented by :
+  \begin{itemize}
+  \item frontConnections : this STL vector of vectors of int is used to hold connections leading downwards in our graph.
+  \item toProve : this vector is used to hold the nodes that will need to be proven as connected to the "yes" node.
+   
+  \item backConnections : this vector is used to hold the parent for each node.
+  
+  \item completed : this vector is 1 if the node can be marked as completed and 0 if it is not completed yet.
+  
+  \item initialState : this deque that holds vectors is the initial state the RBFS will get at its first call.
+	\end{itemize}
+  
+\end{itemize}
+
+\item
+\mbox{The Specification of the input.}\linebreak
+\linebreak
+\item This is how the input will be given in the test file:
+\begin{enumerate}	\item First number represents the number of definitions. For each of the definitions we will have:
+	\begin{enumerate} \item[1.1] The number of parameters.
+		\item[1.2] The starting node.
+		\item[1.3] All the parameters leading from the starting node.
+		\end{enumerate}
+	\item The number of nodes we need to prove.
+	\item The nodes that we need to prove.
+	\end{enumerate}
+\item
+\mbox{The Specification of the output.}\linebreak
+\linebreak
+The output is a message to the console that can be either:
+
+-The answer to the querry is true. This means there is at least 1 path that leads to "yes" for our nodes in toProve.
+
+-The answer to the querry is false. This means there is no path that leads to "yes" for our nodes in toProve.
+\pagebreak
+
+
+\end{itemize}
+
+
+\section{Conclusions}
+
+
+\subsection{Achievements}
+Understanding the logic behind some AI algorithms like RBFS and A* and how they pick their paths.
+\subsection{Challenging and interesting	parts}
+\sloppy
+One interesting part of the project was understanding the heuristic sorting for the nodes so we can pick the best one to split next.
+\linebreak
+\subsection{Future directions for extending the project} 
+One future direction for this project would be implementing it in a real world application or something like an AI in a game.
+\pagebreak
+
+\begin{thebibliography}{9}
+	
+	\bibitem{cormen09}
+	Thomas H. Cormen and Charles E. Leiserson and Ronald L. Rivest and Clifford Stein,
+	\emph{Introduction to Algorithms}.
+	MIT Press,
+	3rd Edition,
+	2009.
+	
+	\bibitem{latex}
+	\url{https://www.hackerrank.com/domains/ai/ai-introduction} \linebreak
+	\url{http://artint.info/html/ArtInt.html}
+	\linebreak
+	\url{https://www.youtube.com/watch?v=EvvSYeI6BaQ}
+	\linebreak
+	\url{http://cs.gettysburg.edu/~tneller/papers/talks/RBFS_Example.htm}
+		\linebreak
+		\url{https://www.youtube.com/watch?v=tZYQywJJg9s}
+		\linebreak
+\end{thebibliography}
+
+
+
+\end{document}
