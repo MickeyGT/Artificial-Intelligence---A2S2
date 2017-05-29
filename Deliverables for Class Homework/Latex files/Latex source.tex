@@ -9,6 +9,8 @@
 \usepackage{hyperref}
 \hypersetup{colorlinks=true}
 \usepackage{graphicx}
+\documentclass{article}
+\usepackage[ruled]{algorithm2e}
 
 \begin{document}
 
@@ -25,7 +27,7 @@
 % sections
 \section{Problem statement}
 
-Your task is to develop an application to evaluate the performance of an heuristic
+The task is to develop an application to evaluate the performance of an heuristic
 search algorithm.
 We consider Recursive best-first search – RBFS. In what follows we present
 the description:
@@ -41,17 +43,90 @@ therefore decide whether it’s worth reexpanding the \mbox{subtree at some late
 P2) Top-down proof with SLD resolution. Here you can vary the number n of
 propositional symbols, as well as the number k of rules.
 
-%%This document is about \LaTeX{}~\cite{lamport94}
-\pagebreak
+Being given different rules that we can see as lines in a graph, we have to see if all our nodes from the starting nodes list have a path that leads to the "Yes" node. We will need to pick the branch that is most likely the fastest to give us an answer.
+\section{Pseudocode Section}
+ 
+\begin{algorithm}[H]
+ 
+\SetAlgoLined
+ \SetKwFunction{RBFS}{RBFS}\SetKwFunction{proc}{proc}
+ \SetKwProg{myalg}{Function}{}{}
+  \myalg{\RBFS{deque que}}{
+  
+   \ForEach{vector in que}
+   {
+      \If{the size of the vector is smaller than the minSize variable}
+      {
+        the value of minSize is now the size of the vector
+        \linebreak
+        the toSplit vector is now a copy of the vector
+      }
 
-\linebreak
+   }
+  
+     \ForEach{node in the vector toSplit}
+   {
+        \ForEach{vector in frontConnections[node]}
+        {
+          \eIf{the size of the vector is 1}
+          {
+            we mark the element in that vector as being completed
+          }
+          {
+            we push the entire vector in the que
+          }
+        }
+   }
+  
+  We delete the toSplit vector from the que.
 
+    \ForEach{node in toSplit}
+        {
+          \If{the node is not marked as completed}
+          {
+            ok=0
+            \linebreak
+            break
+          }
+        }
+
+ 
+  \If{ok}
+  {
+    we mark the parent node as being completed
+  }
+ \ForEach{node in toProve vector}
+        {
+          \If{the node is not marked as completed}
+          {
+            ok=0
+            \linebreak
+            break
+          }
+        }
+    \If{ok}
+  {
+    we modify the value of programFinished
+  }
+  
+  \eIf{programFinished = 1}
+          {
+            There is at least 1 path that leads to "yes" for our nodes in toProve.
+          }
+          {
+           There is no path that leads to "yes" for our nodes in toProve.
+          }
+  
+  \nl \KwRet\;}{}
+ \caption{Recursive best first search}
+\end{algorithm}
+ 
 
 \section{Application Design}
 
 \begin{itemize}
 \item
-The pseudocode used was the pseudocode given in the problem statement for the RBFS function.
+The heuristic way to pick the next nodes to split is by sorting all of the nodes by the number of parameters they have and pick the one with the fewest because that one is the one that is the most likely to finish quickest.
 
 \item
 The high level architectural overview of the application.
@@ -102,7 +177,7 @@ The output is a message to the console that can be either:
 
 
 \subsection{Achievements}
-Understanding the logic behind some AI algorithms like RBFS and A* and how they pick their paths.
+One thing I achieved during the project was understanding the logic behind some AI algorithms like RBFS and A* and how they pick their paths by estimating and guessing what is the best next path to chose without knowing too much in advance.
 \subsection{Challenging and interesting	parts}
 \sloppy
 One interesting part of the project was understanding the heuristic sorting for the nodes so we can pick the best one to split next.
